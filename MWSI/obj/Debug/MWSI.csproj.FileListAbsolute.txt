@@ -8,3 +8,13 @@ C:\Users\Konrad\source\repos\MWSI\MWSI\obj\Debug\MWSI.csproj.GenerateResource.ca
 C:\Users\Konrad\source\repos\MWSI\MWSI\obj\Debug\MWSI.csproj.CoreCompileInputs.cache
 C:\Users\Konrad\source\repos\MWSI\MWSI\obj\Debug\MWSI.exe
 C:\Users\Konrad\source\repos\MWSI\MWSI\obj\Debug\MWSI.pdb
+C:\Users\Konrad\source\repos\MWSI_v0.1\MWSI\MWSI\bin\Debug\MWSI.exe.config
+C:\Users\Konrad\source\repos\MWSI_v0.1\MWSI\MWSI\bin\Debug\MWSI.exe
+C:\Users\Konrad\source\repos\MWSI_v0.1\MWSI\MWSI\bin\Debug\MWSI.pdb
+C:\Users\Konrad\source\repos\MWSI_v0.1\MWSI\MWSI\obj\Debug\MWSI.csprojAssemblyReference.cache
+C:\Users\Konrad\source\repos\MWSI_v0.1\MWSI\MWSI\obj\Debug\MWSI.Properties.Resources.resources
+C:\Users\Konrad\source\repos\MWSI_v0.1\MWSI\MWSI\obj\Debug\MWSI.csproj.GenerateResource.cache
+C:\Users\Konrad\source\repos\MWSI_v0.1\MWSI\MWSI\obj\Debug\MWSI.csproj.CoreCompileInputs.cache
+C:\Users\Konrad\source\repos\MWSI_v0.1\MWSI\MWSI\obj\Debug\MWSI.exe
+C:\Users\Konrad\source\repos\MWSI_v0.1\MWSI\MWSI\obj\Debug\MWSI.pdb
+C:\Users\Konrad\source\repos\MWSI_v0.1\MWSI\MWSI\obj\Debug\MWSI.MainForm.resources

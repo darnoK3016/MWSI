@@ -5,11 +5,10 @@ using System.Windows.Forms;
 
 namespace MWSI
 {
-    public class MouseEvents
+    public class MouseEvents // klasa z metodami oblugi eventow myszki
     {
-
-        bool clicked = false;
-        bool entered = false;
+        bool clicked;
+        bool entered;
         Point clickedPoint;
         PictureBox map;
         readonly float zoom = 1.1f;
@@ -42,38 +41,57 @@ namespace MWSI
             entered = false;
         }
 
-        public void Maps_Move(object sender, MouseEventArgs e)
+        public void Maps_Move(object sender, MouseEventArgs e) //przesuwanie
         {
-            if (clicked && entered)
+            if (clicked)
             {
                 int x = clickedPoint.X - e.X;
                 int y = clickedPoint.Y - e.Y;
-                Point moveLocation = new Point(map.Location.X - x, map.Location.Y - y);
-                if ((map.Location.X - x) <0 && (map.Location.Y - y) < 0 &&
-                    (map.Location.X + map.Size.Width - x) > panelSize.Width && (map.Location.Y + map.Size.Height - y) > panelSize.Height)
+
+                if ((map.Location.X - x) < 0 && (map.Location.X + map.Size.Width - x) > panelSize.Width)
                 {
-                    map.Location = new Point(map.Location.X - x, map.Location.Y - y);
+                    map.Location = new Point(map.Location.X - x, map.Location.Y);
                 }
+                if ((map.Location.Y - y) < 0 && (map.Location.Y + map.Size.Height - y) > panelSize.Height)
+                {
+                    map.Location = new Point(map.Location.X, map.Location.Y - y);
+                }
+                Point moveLocation = new Point(map.Location.X - x, map.Location.Y - y);
             }
 
         }
 
-        public void Maps_Zoom(object sender, MouseEventArgs e)
+        public void Maps_Zoom(object sender, MouseEventArgs e) //zoom
         {
             if (entered)
             {
                 if (e.Delta > 0)
                 {
                     map.Size = new Size((int)(map.Width * zoom), (int)(map.Height * zoom));
-                    map.Left = map.Left - (int)((e.X - map.Left) * (zoom - 1));
+                    map.Left = map.Left  - (int)((e.X - map.Left) * (zoom - 1));
                     map.Top = map.Top - (int)((e.Y - map.Top) * (zoom - 1));
                 }
                 else if (e.Delta < 0 && map.Size.Width > panelSize.Width && map.Size.Height > panelSize.Height)
                 {
-                    map.Size = new Size((int)(map.Width / zoom), (int)(map.Height / zoom));
-                    map.Left = map.Left - (int)((e.X - map.Left) * (1 / zoom - 1));
-                    map.Top = map.Top - (int)((e.Y - map.Top) * (1 / zoom - 1));
+                    int x = e.X;
+                    int y = e.Y;
+                    if ((map.Location.X - x) < 0 && (map.Location.Y - y) < 0 &&
+                        (map.Location.X + map.Size.Width - x) > panelSize.Width
+                        && (map.Location.Y + map.Size.Height - y) > panelSize.Height)
+                    { 
+                        map.Size = new Size((int)(map.Width / zoom), (int)(map.Height / zoom));
+                        map.Left = map.Left - (int)((e.X - map.Left) * (1 / zoom - 1));
+                        map.Top = map.Top - (int)((e.Y - map.Top) * (1 / zoom - 1));
+
+                    }
+                    else // W tym elsie trzeba zrobić przybliżanie do środka ale stopniowo aż do 100% rozmiaru
+                    {
+                        map.Size = new Size((int)(map.Width / zoom), (int)(map.Height / zoom));
+                        map.Left = map.Left - (int)((e.X - map.Left) * (1 / zoom - 1));
+                        map.Top = map.Top - (int)((e.Y - map.Top) * (1 / zoom - 1));
+                    }
                 }
+
             }
 
         }
