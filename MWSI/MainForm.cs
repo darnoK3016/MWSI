@@ -9,13 +9,13 @@ namespace MWSI
 {
     public partial class MainForm : Form
     {
-        private string tempMWSIPath; //sciezka do temp (cache)
+        private string tempMWSIPath; // katalog dostepu (cache)
         private List<MapLayer> mapLayersInfo = new List<MapLayer>(); // Lista z obiektami warstw map <MapLayer>
         private PictureBox mapLayers; // PictureBox do wszystkich warstw
         private MouseEvents me; // Mouse Event handler
         private bool changePosition = false; // flaga potrzebna podczas zmiany pozycji warstwy na listboxie
 
-        public MainForm()
+        public MainForm() // glowna forma
         {
             try
             {
@@ -101,7 +101,8 @@ namespace MWSI
             }
 
         }
-        public static Bitmap ChangeOpacity(Image originalImage, double opacity) //zmiana przezroczystosci 
+
+        public static Bitmap ChangeOpacity(Image originalImage, double opacity) //zmiana przezroczystosci
         {
             if ((originalImage.PixelFormat & PixelFormat.Indexed) == PixelFormat.Indexed) // sprawdzanie czy nowy obraz bedzie sie roznil od starego
             {
@@ -141,20 +142,32 @@ namespace MWSI
             return bmp; //zwrocenie nowego obrazu
         }
 
-        private void MainForm_SizeChanged(object sender, EventArgs e)
+        private void MainForm_SizeChanged(object sender, EventArgs e) //obsluga eventu podczas zmiany wielkosci okna aplikacji
         {
             try
             {
-                LayersPanel.Size = new Size(Width - 180, Height - 63);
+                LayersPanel.Size = new Size(Width - 309, Height - 63);
                 if (mapLayers != null)
                     mapLayers.Size = LayersPanel.Size;
+
+                WarstwyMapyLayer.Location = new Point(Width - 303, 24);
+                CheckedListBoxMaps.Location = new Point(Width - 303, 40);
+                CheckedListBoxMaps.Size = new Size(CheckedListBoxMaps.Size.Width, Height * 109/463);
+                var CheckedListBoxMapEndHeight = 40 + CheckedListBoxMaps.Size.Height;
+                ButtonUp.Location = new Point(Width - 303, CheckedListBoxMapEndHeight + 5);
+                ButtonDown.Location = new Point(Width - 162, CheckedListBoxMapEndHeight + 5);
+                OpacityLabel.Location = new Point(Width - 303, CheckedListBoxMapEndHeight + 36);
+                OpacityScrollBar.Location = new Point(Width - 303, CheckedListBoxMapEndHeight + 44);
+                ButtonRefresh.Location = new Point(Width - 303, Height - 62);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        } //obsluga eventu podczas zmiany wielkosci okna aplikacji
+        } 
+
         private void CheckedListBoxMaps_ItemCheck(object sender, ItemCheckEventArgs e)//obsluga eventu podczas zaznaczania warstwy
         {
             if (!changePosition) //sprawdzenie czy zaznaczona warstwa zmienia polozenie na liscie, poniewaz w momencie zmiany nastepuje uruchomienie eventu lecz nie aktywnosc warstwy niepowinna sie wtedy zmienic
@@ -177,6 +190,7 @@ namespace MWSI
                 //obsluga layeru z wartoscia przezroczystosci
                 OpacityScrollBar.Value = (int)(mapLayersInfo[selected].GetOpacity() * 100);
                 OpacityLabel.Text = $"Opacity: {OpacityScrollBar.Value}%";
+                mapLayers.Focus(); //ustawienie koncetracji na warstwach
 
             }
         }
@@ -241,6 +255,7 @@ namespace MWSI
                     LayersPanel.Controls.Clear(); // usuwanie aktualnych warstw z panelu
                     LayersPanel.Controls.Add(mapLayers); //wyswietlenie aktualnych aktywnych warstw
                     MouseHandler(); // utworzenie MouseHandlera dla nowych warstw
+                    mapLayers.Focus(); //ustawienie koncetracji na warstwach
                 }
                 else
                 {
@@ -253,7 +268,6 @@ namespace MWSI
                 MessageBox.Show(e.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
  
         private void ButtonUp_Click(object sender, EventArgs e) //obsluga eventu przycisku podczas zmiany polozenia warstwy do gory
         {
@@ -321,8 +335,7 @@ namespace MWSI
             }
         }
 
-
-        private void OpacityScrollBar_ValueChanged(object sender, EventArgs e)
+        private void OpacityScrollBar_ValueChanged(object sender, EventArgs e) //obsluga eventu zmiany przezroczystosci warstwy
         {
             if (CheckedListBoxMaps.SelectedItem != null)
             {
@@ -332,14 +345,14 @@ namespace MWSI
                 OpacityLabel.Text = $"Opacity: {OpacityScrollBar.Value}%";
                 Panel1Refresh();
             }
-        } //obsluga eventu zmiany przezroczystosci warstwy
+        } 
 
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e) //obsluga eventu wyjscia z aplikacji za pomoca menu
         {
             Application.Exit();
-        } //obsluga eventu wyjscia z aplikacji za pomoca menu
+        } 
 
-        private void ButtonRefresh_MouseClick(object sender, MouseEventArgs e) //obsluga eventu przycisku do odswiezania panelu, potrzebne do odbugowania Mouse Handlera
+        private void ButtonRefresh_Click(object sender, EventArgs e) //obsluga eventu przycisku do odswiezenia
         {
             Panel1Refresh();
         }

@@ -11,7 +11,7 @@ namespace MWSI
 {
     class MapLayer // klasa w ktorej sa przechowywane informacje danej warstwy
     {
-        readonly string tempLayerPath;  //sciezka dostepu do obrazu
+        readonly string tempLayerPath;  //katalog dostepu do pliku
         Size panelSize; //wielkosc panelu potrzebna do wielkosci obrazu
         bool active; //flaga aktywnosci warstwy tzn czy jest zaznaczona na liscie
         double opacity; // wartosc przezroczystosci
@@ -25,6 +25,7 @@ namespace MWSI
             opacity = 1;
         }
 
+        //gettery i settery do atrybutow klasy
         public PictureBox GetLayer() //zwracanie PictureBoxa z obrazem
         {
             var layer = new PictureBox();

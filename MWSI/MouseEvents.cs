@@ -7,12 +7,12 @@ namespace MWSI
 {
     public class MouseEvents // klasa z metodami oblugi eventow myszki
     {
-        bool clicked;
-        bool entered;
-        Point clickedPoint;
-        PictureBox map;
-        readonly float zoom = 1.1f;
-        Size panelSize;
+        bool clicked; //flaga klikniecia
+        bool entered; //flaga skierowania
+        Point clickedPoint; // wspolrzedne klikniecia myszki
+        PictureBox map; // Picturebox warstwy
+        readonly float zoom = 1.1f; // stala zmienna przyblizania
+        Size panelSize; // rozmiar panelu na MainFormie
 
         public MouseEvents(PictureBox map, Size panelSize)
         {
@@ -20,28 +20,28 @@ namespace MWSI
             this.panelSize = panelSize;
         }
 
-        public void Maps_Down(object sender, MouseEventArgs e)
+        public void Maps_Down(object sender, MouseEventArgs e) //obsluga eventu nacisniecia przycisku myszki
         {
             clicked = true;
             clickedPoint = e.Location;
         }
 
-        public void Maps_Up(object sender, MouseEventArgs e)
+        public void Maps_Up(object sender, MouseEventArgs e) //obsluga eventu zwolnienia przycisku myszki
         {
             clicked = false;
         }
 
-        public void Maps_Enter(object sender, EventArgs e)
+        public void Maps_Enter(object sender, EventArgs e) //obsluga eventu skierowania myszki na obiekt
         {
             entered = true;
         }
 
-        public void Maps_Left(object sender, EventArgs e)
+        public void Maps_Left(object sender, EventArgs e) //obsluga eventu opuszczena myszki z obiektu
         {
             entered = false;
         }
 
-        public void Maps_Move(object sender, MouseEventArgs e) //przesuwanie
+        public void Maps_Move(object sender, MouseEventArgs e) //obluga eventu przesuwania
         {
             if (clicked)
             {
@@ -61,7 +61,7 @@ namespace MWSI
 
         }
 
-        public void Maps_Zoom(object sender, MouseEventArgs e) //zoom
+        public void Maps_Zoom(object sender, MouseEventArgs e) //obluga eventu przyblizania i oddalania
         {
             if (entered)
             {

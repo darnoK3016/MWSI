@@ -43,6 +43,7 @@
             this.ButtonDown = new System.Windows.Forms.Button();
             this.OpacityLabel = new System.Windows.Forms.Label();
             this.ButtonRefresh = new System.Windows.Forms.Button();
+            this.WarstwyMapyLayer = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.LayersPanel.SuspendLayout();
             this.SuspendLayout();
@@ -92,9 +93,9 @@
             // 
             this.OpacityScrollBar.Enabled = false;
             this.OpacityScrollBar.LargeChange = 1;
-            this.OpacityScrollBar.Location = new System.Drawing.Point(406, 329);
+            this.OpacityScrollBar.Location = new System.Drawing.Point(406, 193);
             this.OpacityScrollBar.Name = "OpacityScrollBar";
-            this.OpacityScrollBar.Size = new System.Drawing.Size(281, 21);
+            this.OpacityScrollBar.Size = new System.Drawing.Size(281, 16);
             this.OpacityScrollBar.TabIndex = 0;
             this.OpacityScrollBar.Value = 100;
             this.OpacityScrollBar.ValueChanged += new System.EventHandler(this.OpacityScrollBar_ValueChanged);
@@ -126,9 +127,9 @@
             // 
             this.CheckedListBoxMaps.BackColor = System.Drawing.SystemColors.Control;
             this.CheckedListBoxMaps.FormattingEnabled = true;
-            this.CheckedListBoxMaps.Location = new System.Drawing.Point(406, 94);
+            this.CheckedListBoxMaps.Location = new System.Drawing.Point(406, 40);
             this.CheckedListBoxMaps.Name = "CheckedListBoxMaps";
-            this.CheckedListBoxMaps.Size = new System.Drawing.Size(281, 154);
+            this.CheckedListBoxMaps.Size = new System.Drawing.Size(281, 109);
             this.CheckedListBoxMaps.TabIndex = 3;
             this.CheckedListBoxMaps.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CheckedListBoxMaps_ItemCheck);
             this.CheckedListBoxMaps.SelectedIndexChanged += new System.EventHandler(this.CheckedListBoxMaps_SelectedIndexChanged);
@@ -138,7 +139,7 @@
             this.ButtonUp.Enabled = false;
             this.ButtonUp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ButtonUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.ButtonUp.Location = new System.Drawing.Point(406, 254);
+            this.ButtonUp.Location = new System.Drawing.Point(406, 154);
             this.ButtonUp.Name = "ButtonUp";
             this.ButtonUp.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ButtonUp.Size = new System.Drawing.Size(140, 23);
@@ -152,7 +153,7 @@
             this.ButtonDown.Enabled = false;
             this.ButtonDown.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ButtonDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.ButtonDown.Location = new System.Drawing.Point(547, 254);
+            this.ButtonDown.Location = new System.Drawing.Point(547, 154);
             this.ButtonDown.Name = "ButtonDown";
             this.ButtonDown.Size = new System.Drawing.Size(140, 23);
             this.ButtonDown.TabIndex = 5;
@@ -164,7 +165,7 @@
             // 
             this.OpacityLabel.AutoSize = true;
             this.OpacityLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.OpacityLabel.Location = new System.Drawing.Point(406, 316);
+            this.OpacityLabel.Location = new System.Drawing.Point(406, 180);
             this.OpacityLabel.Name = "OpacityLabel";
             this.OpacityLabel.Size = new System.Drawing.Size(49, 13);
             this.OpacityLabel.TabIndex = 6;
@@ -173,13 +174,22 @@
             // 
             // ButtonRefresh
             // 
-            this.ButtonRefresh.Location = new System.Drawing.Point(406, 27);
+            this.ButtonRefresh.Location = new System.Drawing.Point(406, 401);
             this.ButtonRefresh.Name = "ButtonRefresh";
             this.ButtonRefresh.Size = new System.Drawing.Size(281, 23);
             this.ButtonRefresh.TabIndex = 7;
             this.ButtonRefresh.Text = "Refresh";
             this.ButtonRefresh.UseVisualStyleBackColor = true;
-            this.ButtonRefresh.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ButtonRefresh_MouseClick);
+            this.ButtonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
+            // 
+            // WarstwyMapyLayer
+            // 
+            this.WarstwyMapyLayer.AutoSize = true;
+            this.WarstwyMapyLayer.Location = new System.Drawing.Point(406, 24);
+            this.WarstwyMapyLayer.Name = "WarstwyMapyLayer";
+            this.WarstwyMapyLayer.Size = new System.Drawing.Size(79, 13);
+            this.WarstwyMapyLayer.TabIndex = 8;
+            this.WarstwyMapyLayer.Text = "Warstwy mapy:";
             // 
             // MainForm
             // 
@@ -188,6 +198,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(693, 424);
+            this.Controls.Add(this.WarstwyMapyLayer);
             this.Controls.Add(this.ButtonRefresh);
             this.Controls.Add(this.OpacityLabel);
             this.Controls.Add(this.ButtonDown);
@@ -197,6 +208,7 @@
             this.Controls.Add(this.OpacityScrollBar);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
+            this.MinimumSize = new System.Drawing.Size(309, 463);
             this.Name = "MainForm";
             this.Text = "MWSI";
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
@@ -224,6 +236,7 @@
         private System.Windows.Forms.Label OpacityLabel;
         private System.Windows.Forms.Button ButtonRefresh;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label WarstwyMapyLayer;
     }
 }
 
